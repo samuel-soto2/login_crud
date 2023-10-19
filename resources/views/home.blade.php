@@ -36,3 +36,15 @@
                         $conn->close();
                     }
                     ?>
+                    <form method="POST" action="">
+                        Nombre: <input type="text" name="nombre">
+                        Precio: <input type="text" name="precio">
+                        <input type="submit" value="Agregar Producto">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
