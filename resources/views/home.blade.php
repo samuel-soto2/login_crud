@@ -12,3 +12,27 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
+                        @endif
+
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['nombre']) && isset($_POST['precio'])) {
+                        $nombre = $_POST['nombre'];
+                        $precio = $_POST['precio'];
+
+                        $conn = new mysqli("localhost", "usuario", "contrasena", "laravel");
+
+                        if ($conn->connect_error) {
+                            die("Conexión fallida: " . $conn->connect_error);
+                        }
+
+                        $sql = "INSERT INTO productos (nombre, precio) VALUES ('$nombre', $precio)";
+                        
+                        if ($conn->query($sql) === TRUE) {
+                            echo "Producto agregado con éxito";
+                        } else {
+                            echo "Error: " . $sql . "<br>" . $conn->error;
+                        }
+
+                        $conn->close();
+                    }
+                    ?>
